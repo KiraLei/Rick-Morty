@@ -12,11 +12,16 @@ const Cards = ({ people }) => {
       {people.length ? (
         people.map((person) => (
           <div className="col mb-5" key={person.created}>
-            <Link to={`/detail/${person.id}`}>
-              <div className="card">
-                <h2>{person.name}</h2>
-
+            <Link className="decoration" to={`/detail/${person.id}`}>
+              <div className="card flex">
                 <img src={person.image} alt="photo" />
+                <div>
+                  <h2>{person.name}</h2>
+                  <p>{person.status}</p>
+                  <p>{person.origin.name}</p>
+                  <p>{person.gender}</p>
+                  <p>{person.species}</p>
+                </div>
               </div>
             </Link>
           </div>
@@ -30,31 +35,31 @@ const Cards = ({ people }) => {
 export default Cards;
 
 export const Card2 = ({ id }) => {
-  // const {itemid}=useParams()
-  // console.log(itemid)
   const [person, setPerson] = useState(undefined);
   useEffect(() => {
     axios({
       url: "https://rickandmortyapi.com/api/character/" + id,
       method: "get",
     }).then((result) => {
-     // console.log("card2 - result", result.data);
       setPerson(result.data);
     });
   }, []);
 
   return (
-    <div className="card" style={{ maxWidth: "350px" }}>
+    <div className="col mb-5" style={{ maxWidth: "480px" }}>
       {person ? (
-       
-          <Link to={`/detail/${person.id}`}>
-         
-            <h2>{person.name}</h2>
-
+        <Link className="decoration" to={`/detail/${person.id}`}>
+          <div className="card flex">
             <img src={person.image} alt="photo" />
-           
-          </Link>
-       
+            <div>
+              <h2>{person.name}</h2>
+              <p>{person.status}</p>
+              <p>{person.origin.name}</p>
+              <p>{person.gender}</p>
+              <p>{person.species}</p>
+            </div>
+          </div>
+        </Link>
       ) : (
         <p>Cargando</p>
       )}

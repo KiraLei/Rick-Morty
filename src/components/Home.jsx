@@ -19,13 +19,12 @@ const Home = () => {
 
   useEffect(() => {
     getPeople();
-
-    // bnBuscar_click();
   }, []);
 
   const onPrevious = async () => {
     getPeople(pag.prev);
   };
+
   const onNext = async () => {
     getPeople(pag.next);
   };
@@ -33,9 +32,6 @@ const Home = () => {
   const handleSearch = (e) => {
     setSearch(e.target.value);
     setArrId([]);
-    // console.log(e.)
-
-    //filtrar(e.target.value);
   };
 
   const bnBuscar_click = () => {
@@ -61,33 +57,17 @@ const Home = () => {
     });
   };
 
-  const filtrar = (finishSearch) => {
-    let resultSearch = people.filter((element) => {
-      // console.log(element)
-
-      if (
-        element.results.name
-          .toString()
-          .toLowerCase()
-          .includes(finishSearch.toLowerCase)
-      ) {
-        return element;
-      }
-      setPeople(resultSearch);
-    });
-  };
-
   return (
     <div className="container mt-5">
       <h1>RICK AND MORTY Home</h1>
-      <div className="containerInput">
+      <div className="containerInput flex">
         <input
           className="form-control"
           value={search}
           placeholder="Búsqueda"
           onChange={handleSearch}
         />
-        <button className="btn btn-success" onClick={bnBuscar_click}>
+        <button className="btn btn-success btn-co" onClick={bnBuscar_click}>
           Buscar
         </button>
         {/*  <pre>{JSON.stringify(arrId, null, 3)}</pre> */}
@@ -102,11 +82,10 @@ const Home = () => {
         <Cards people={people}></Cards>
       ) : (
         <div className="row">
-          <div>
           {arrId.map((x) => (
             <Card2 id={x} key={x} />
           ))}
-          </div>
+          <video src=""></video>
         </div>
       )}
     </div>

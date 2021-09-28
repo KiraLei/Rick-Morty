@@ -3,14 +3,13 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import {  useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export const Detail = (people) => {
   const [person, setPerson] = useState();
-  const history= useHistory()
+  const history = useHistory();
 
   const { itemid } = useParams();
- // console.log(itemid);
 
   const getPerson = async (id) => {
     let response = await axios.get(
@@ -21,7 +20,6 @@ export const Detail = (people) => {
 
   useEffect(() => {
     getPerson(itemid);
-    // console.log(person)
   }, []);
 
   return (
@@ -44,7 +42,8 @@ export const Detail = (people) => {
                 <p>Origen: {person.origin.name}</p>
                 <p>Localizacion: {person.location.name}</p>
 
-                <button className='btn btn-outline-primary'
+                <button
+                  className="btn btn-outline-primary"
                   onClick={() => {
                     history.goBack();
                   }}
